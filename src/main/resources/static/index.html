@@ -10,7 +10,8 @@
         <h1>Spring App</h1>
     </header>
     <div class="container">
-
+        <div id="time-field">
+        </div>
         <div>
             <h4>Say Hello:</h4>
             <form action="/hello" method="get">
@@ -31,6 +32,21 @@
             </form>
         </div>
     </div>
+
+    <script>
+        (function (){
+            const timeField = document.getElementById('time-field');
+
+            if(timeField) {
+                fetch('/time')
+                    .then(response => response.json())
+                    .then(data => {
+                        timeField.innerHTML = data.now;
+                    });
+            }
+
+        })();
+    </script>
 
 </body>
 </html>
