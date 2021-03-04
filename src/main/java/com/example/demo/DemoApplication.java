@@ -28,7 +28,7 @@ public class DemoApplication {
 
     @GetMapping("/time")
     public TimeNow getTime() {
-        return new TimeNow(String.format("Time is now: %s", new SimpleDateFormat("yyyy-MM-dd").format(new Date())));
+        return new TimeNow(String.format("Time is now: %s", new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date())));
     }
 
 

@@ -29,3 +29,12 @@ h1 {
     text-transform: uppercase;
     font-family: monospace;
 }
+
+#time-field {
+    font-family: monospace;
+    font-size: 1.1rem;
+    width: 100%;
+    padding: .5rem;
+    background: #343232;
+    color: #ea5d5d;
+}
