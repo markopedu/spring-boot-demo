@@ -24,6 +24,10 @@ public class DemoApplication {
     @Value("${site.description}")
     private String siteDescription;
 
+    private String getTimeNow() {
+       return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date());
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
     }
@@ -33,6 +37,9 @@ public class DemoApplication {
         return new Site(siteTitle, siteDescription);
     }
 
+    @GetMapping("/health")
+    Health getHealth() { return new Health("OK", getTimeNow()); }
+
     @GetMapping("/hello")
     public Greeting sayHello(@RequestParam(value="myName", defaultValue = "World") String name) {
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
@@ -40,7 +47,7 @@ public class DemoApplication {
 
     @GetMapping("/time")
     public TimeNow getTime() {
-        return new TimeNow(String.format("Time is now: %s", new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date())));
+        return new TimeNow(String.format("Time is now: %s", getTimeNow()));
     }
 
 
