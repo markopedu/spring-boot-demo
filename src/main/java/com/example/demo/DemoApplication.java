@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +18,19 @@ public class DemoApplication {
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
+    @Value("${site.title}")
+    private String siteTitle;
+
+    @Value("${site.description}")
+    private String siteDescription;
+
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
+    }
+
+    @GetMapping("/site")
+    public Site getSite() {
+        return new Site(siteTitle, siteDescription);
     }
 
     @GetMapping("/hello")
