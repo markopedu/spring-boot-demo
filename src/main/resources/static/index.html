@@ -32,6 +32,8 @@
                 </div>
             </form>
         </div>
+        <h4>Employees:</h4>
+        <div id="employee-list"></div>
     </div>
 
     <script>
@@ -57,6 +59,19 @@
                     .then(data => {
                         timeField.innerHTML = data.now;
                     });
+            }
+
+            const employeeList = document.getElementById("employee-list");
+
+            if(employeeList) {
+                fetch('/api/employees')
+                    .then(response => response.json())
+                    .then(data => {
+                        if(data) {
+                            employeeList.innerHTML = data.map(e => `<p>${e.firstName}, ${e.lastName}, ${e.email}</p>`)
+                        }
+                    });
+
             }
 
         })();
