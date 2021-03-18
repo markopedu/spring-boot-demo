@@ -41,6 +41,17 @@ public class EmployeeRestController {
         return theEmployee;
     }
 
+    @PostMapping("/employeeslist/")
+    public List<Employee> addEmployee(@RequestBody List<Employee> employeeList) {
+
+        for (Employee employee: employeeList) {
+            employee.setId(0);
+            employeeService.save(employee);
+        }
+
+        return employeeList;
+    }
+
 
     @DeleteMapping("/employees/{employeeId}")
     public String deleteEmployeeById(@PathVariable int employeeId) {
