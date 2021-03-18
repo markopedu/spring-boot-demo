@@ -68,7 +68,7 @@
                     .then(response => response.json())
                     .then(data => {
                         if(data) {
-                            employeeList.innerHTML = data.map(e => `<p>${e.firstName}, ${e.lastName}, ${e.email}</p>`)
+                            employeeList.innerHTML = data.map(e => `<p>${e.firstName}, ${e.lastName}, ${e.email}</p>`).join('')
                         }
                     });
 
